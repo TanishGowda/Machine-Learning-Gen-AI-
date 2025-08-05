@@ -7,11 +7,9 @@ from sklearn.metrics import classification_report, accuracy_score
 import warnings
 warnings.filterwarnings('ignore')
 
-# Load dataset from CSV
 print("Loading dataset from CSV...")
 df = pd.read_csv("Fitness_Data.csv")
 
-# Display basic statistics
 print(f"\nDataset loaded with {len(df)} rows and {len(df.columns)} columns")
 print("\nFirst 5 rows:")
 print(df.head())
@@ -22,7 +20,6 @@ print(df.info())
 print("\nTraining Intensity Distribution:")
 print(df['Training_Intensity'].value_counts())
 
-# Prepare data for machine learning
 print("\nPreparing data for machine learning...")
 
 # Create label encoders for categorical variables
@@ -44,10 +41,9 @@ feature_columns = ['Age', 'Weight', 'Height', 'Muscle_Mass', 'BMI',
 X = df_encoded[feature_columns]
 y = df_encoded['Training_Intensity_encoded']
 
-# Split the data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
 
-# Train Decision Tree model
+# Training the Decision Tree model
 print("Training Decision Tree model...")
 dt_model = DecisionTreeClassifier(
     random_state=42,
@@ -59,7 +55,6 @@ dt_model = DecisionTreeClassifier(
 
 dt_model.fit(X_train, y_train)
 
-# Evaluate the model
 y_pred = dt_model.predict(X_test)
 accuracy = accuracy_score(y_test, y_pred)
 
@@ -70,7 +65,6 @@ print("\nClassification Report:")
 target_names = le_target.classes_
 print(classification_report(y_test, y_pred, target_names=target_names))
 
-# Feature importance
 feature_importance = pd.DataFrame({
     'feature': feature_columns,
     'importance': dt_model.feature_importances_
@@ -79,14 +73,13 @@ feature_importance = pd.DataFrame({
 print("\nFeature Importance:")
 print(feature_importance)
 
-# Client input and prediction function
+# Accept client input
 def predict_training_intensity():
     print("\n" + "="*50)
     print("FITNESS TRAINING INTENSITY PREDICTOR")
     print("="*50)
     
     try:
-        # Get user inputs
         print("\nPlease enter the following client information:")
         
         age = float(input("Age: "))
@@ -112,20 +105,16 @@ def predict_training_intensity():
         while fitness_goal not in ['Muscle Gain', 'Weight Loss']:
             fitness_goal = input("Please enter 'Muscle Gain' or 'Weight Loss': ").strip()
         
-        # Encode the inputs
         fitness_level_encoded = le_fitness.transform([fitness_level])[0]
         disabilities_encoded = le_disabilities.transform([disabilities])[0]
         fitness_goal_encoded = le_goal.transform([fitness_goal])[0]
         
-        # Create feature array
         features = np.array([[age, weight, height, muscle_mass, bmi, 
                             fitness_level_encoded, disabilities_encoded, fitness_goal_encoded]])
         
-        # Make prediction
         prediction_encoded = dt_model.predict(features)[0]
         prediction = le_target.inverse_transform([prediction_encoded])[0]
         
-        # Get prediction probability
         prediction_proba = dt_model.predict_proba(features)[0]
         confidence = max(prediction_proba) * 100
         
@@ -143,5 +132,5 @@ def predict_training_intensity():
         print("Please make sure all inputs are valid.")
         return None
 
-# Run the prediction system
 predict_training_intensity()
+
