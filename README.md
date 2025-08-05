@@ -16,3 +16,7 @@ In this project, i used a pre-trained Stable Diffusion Pipeline to generate an i
 -- Project 4 (Decision Trees) --
 
 Trained a model, using Decision Trees, for pattern recognition, to predict the Training Intensity Level Requirement of a client (This project/model can be used by gym trainers).
+
+-- Project 5 (TF-IDF (NLP Pipeline)) --
+
+A simple project using pyspark, which demontrates NLP tasks (Tokenizer, TF-IDF, LogisticRegresion). Constructed a pipeline to perform these tasks sequentially.
