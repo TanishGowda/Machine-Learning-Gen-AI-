@@ -12,3 +12,7 @@ In this project, i attempted to train and test a Diffusion Model on MNIST (Image
 -- Project 3 (Stable Diffusion Pipeline) --
 
 In this project, i used a pre-trained Stable Diffusion Pipeline to generate an image based on a prompt, i then added noise to the generated image and again used the Stable Diffusion Pipeline to again denoise the noisy image. This project was done in order to understand the working of Diffusion Models.  
+
+-- Project 4 (Decision Trees) --
+
+Trained a model, using Decision Trees, for pattern recognition, to predict the Training Intensity Level Requirement of a client (This project/model can be used by gym trainers).
