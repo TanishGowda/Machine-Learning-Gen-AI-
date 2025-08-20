@@ -20,3 +20,7 @@ Trained a model, using Decision Trees, for pattern recognition, to predict the T
 -- Project 5 (TF-IDF (NLP Pipeline)) --
 
 A simple project using pyspark, which demontrates NLP tasks (Tokenizer, TF-IDF, LogisticRegresion). Constructed a pipeline to perform these tasks sequentially.
+
+-- Project 6 (Finetuning phi-3-mini model) --
+
+Fine tuned the phi-3-mini model, to accept semi-structured data and convert it into structured data, which is easily readable and understandable.
